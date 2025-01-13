@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>转账页面</title>
+    <style>
+        /* 简单的页面样式，可根据需求进一步美化 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<form id="transferForm" action="any_other_path">
+    <label for="fromAccount">转出账户：</label>
+    <input type="text" id="fromAccount" required placeholder="请输入转出账户">
+
+    <label for="toAccount">转入账户：</label>
+    <input type="text" id="toAccount" required placeholder="请输入转入账户">
+
+    <label for="amount">转账金额：</label>
+    <input type="text" id="amount" required placeholder="请输入转账金额">
+
+    <button type="submit">提交转账</button>
+</form>
+
+<script>
+    // 获取表单元素
+    const transferForm = document.getElementById('transferForm');
+
+    // 为表单的提交事件添加监听器
+    transferForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // 阻止表单默认提交行为
+
+        // 获取表单输入的值
+        const fromAccount = document.getElementById('fromAccount').value;
+        const toAccount = document.getElementById('toAccount').value;
+        const amount = document.getElementById('amount').value;
+       // const amount = Number(document.getElementById('amount').value);
+
+        // 创建包含转账信息的对象
+        const transferData = {
+            fromAccount: fromAccount,
+            toAccount: toAccount,
+            balance: amount
+        };
+
+        // 使用fetch API发送POST请求到指定的transfer/submit接口
+        fetch('submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(transferData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                // 检查响应数据中success字段是否为1
+                if (data.success === 1) {
+                    // 如果是，跳转到登录首页（这里假设登录页面是login.html，可根据实际情况修改）
+                    alert('恭喜您，转账成功！');
+                } else if(data.success === 0) {
+                    // 如果不是，进行相应的提示，这里简单弹出提示框告知用户转账失败，可根据实际优化
+                    alert('转账金额超出限制');
+                } else if(data.success==2){
+                    alert('对方账号可疑，暂时无法转账');
+                }
+            })
+            .catch(error => {
+                console.error('提交转账信息出错：', error);
+                // 出现错误也进行相应提示，同样可根据实际优化提示方式
+                alert('提交转账信息时出现错误，请检查网络或稍后再试');
+            });
+    });
+</script>
+</body>
+
+</html>

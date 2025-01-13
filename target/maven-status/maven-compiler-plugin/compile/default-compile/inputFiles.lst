@@ -1,0 +1,8 @@
+/Users/lishuangquan/Documents/tech/antiFraud/src/main/java/com/hsbc/antifraud/AntiFraudApplication.java
+/Users/lishuangquan/Documents/tech/antiFraud/src/main/java/com/hsbc/antifraud/controller/LoginController.java
+/Users/lishuangquan/Documents/tech/antiFraud/src/main/java/com/hsbc/antifraud/controller/MainController.java
+/Users/lishuangquan/Documents/tech/antiFraud/src/main/java/com/hsbc/antifraud/controller/TransferController.java
+/Users/lishuangquan/Documents/tech/antiFraud/src/main/java/com/hsbc/antifraud/entity/TransInfo.java
+/Users/lishuangquan/Documents/tech/antiFraud/src/main/java/com/hsbc/antifraud/entity/User.java
+/Users/lishuangquan/Documents/tech/antiFraud/src/main/java/com/hsbc/antifraud/repository/UserRepository.java
+/Users/lishuangquan/Documents/tech/antiFraud/src/main/java/com/hsbc/antifraud/service/UserService.java
